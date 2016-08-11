@@ -40,9 +40,13 @@ BOOLEAN init_first_player(struct player* first, enum cell * token) {
 
 BOOLEAN init_second_player(struct player * second, enum cell token) {
 
+	/* Assign name */
 	printf("Please enter the second player's name: ");
 	fgets(second->name, (NAMELEN + 2), stdin);
 	second->name[strlen(second->name)-1] = '\0';
+
+	/* Assign token */
+	second->token = (token == 1) ? 2 : 1;
 
 }
 

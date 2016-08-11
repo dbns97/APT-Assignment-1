@@ -47,6 +47,7 @@ struct player * play_game(struct player * first, struct player * second)
 	printf("first player name: %s\n", first->name);
 	printf("first player token: %d\n", first->token);
 	printf("second player name: %s\n", second->name);
+	printf("second player token: %d\n", second->token);
 
 }
 
