@@ -20,6 +20,7 @@ int main(void)
 	struct player human, computer, *winner = NULL;
 
 	/* initialise the scoreboard */
+	scoreboard_init(scrboard);
 
 	/* in a loop: display the main menu */
 	printMenu();

@@ -21,7 +21,12 @@
  **/
 BOOLEAN init_first_player(struct player* first, enum cell * token) {
 
-	/* Assign naem */
+	/* Initialise to known safe values */
+	first->name = "player1";
+	first->token = RED;
+	first->name = 0;
+
+	/* Assign name */
 	printf("Please enter the first player's name: ");
 	fgets(first->name, (NAMELEN + 2), stdin);
 	first->name[strlen(first->name)-1] = '\0';
@@ -36,9 +41,16 @@ BOOLEAN init_first_player(struct player* first, enum cell * token) {
 
 	first->token = *token;
 
+	return TRUE;
+
 }
 
 BOOLEAN init_second_player(struct player * second, enum cell token) {
+
+	/* Initialise to known safe values */
+	second->name = "player2";
+	second->token = BLUE;
+	second->name = 0;
 
 	/* Assign name */
 	printf("Please enter the second player's name: ");
@@ -47,6 +59,8 @@ BOOLEAN init_second_player(struct player * second, enum cell token) {
 
 	/* Assign token */
 	second->token = (token == 1) ? 2 : 1;
+
+	return TRUE;
 
 }
 
