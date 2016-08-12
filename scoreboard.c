@@ -82,6 +82,8 @@ void display_scores(score scores[MAX_SCORES])
 
 	for (i = 0; i < MAX_SCORES; i++) {
 
+		if (scores[i]->score == 0) continue;
+
 		printf("%s", scores[i]->name);
 
 		for (j = 0; j < (NAMELEN - strlen(scores[i]->name)); j++) {
