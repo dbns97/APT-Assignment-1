@@ -32,22 +32,47 @@
  * of the scores for the two players and return the player with the highest
  * score.
  **/
-struct player * play_game(struct player * first, struct player * second)
-{
+struct player * play_game(struct player * first, struct player * second) {
 
 	/* Variables */
 	game_board board;
 	enum cell token;
 	struct player * current, *other, *winner;
 
+	/* Seed random number generator */
+	srand(time(0));
+
 	/* Initialise both players */
 	init_first_player(first, &token);
 	init_second_player(second, token);
 
+	/* PRINT VALUES FOR TESTING PURPOSES */
 	printf("first player name: %s\n", first->name);
 	printf("first player token: %d\n", first->token);
 	printf("second player name: %s\n", second->name);
 	printf("second player token: %d\n", second->token);
+
+	/* Set the current and other player pointers */
+	if (first->token == RED) {
+		current = first;
+		other = second;
+	} else {
+		current = second;
+		other = first;
+	}
+
+	/* Initialise the game board */
+	init_game_board(board);
+
+	/* Game loop */
+	while(1) {
+
+		/* Display the game board */
+		display_board(board, first, second);
+
+	}
+
+	return winner;
 
 }
 
@@ -57,24 +82,33 @@ struct player * play_game(struct player * first, struct player * second)
  * whether there are any pieces that can be captured. If there are no pieces
  * that can be captured in any direction, it is an invalid move.
  **/
-BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_token)
-{
+BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_token) {
+
 	enum direction dir;
 	unsigned captured_pieces = 0;
+
 }
 
 /**
  * simply count up how many locations contain the player_token
  * specified on the game_board.
  **/
-unsigned game_score(game_board board, enum cell player_token)
-{
+unsigned game_score(game_board board, enum cell player_token) {
+
 }
 
 /**
  * swap the two player pointers passed in so that first points to the player
  * pointer that originally contained the second player and vice versa.
  **/
-void swap_players(struct player ** first, struct player ** second)
-{
+void swap_players(struct player ** first, struct player ** second) {
+
+	/* Variables */
+	player* swp;
+
+	/* Swap the two player pointers */
+	swp = *first;
+	*first = *second;
+	*second = swp;
+
 }

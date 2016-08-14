@@ -21,7 +21,7 @@ void init_scoreboard(score scores[MAX_SCORES]) {
 
 	/* Set each score in scores to 0 */
 	for (i = 0; i < MAX_SCORES; i++) {
-		scores[i]->score = 0;
+		scores[i].score = 0;
 	}
 
 }
@@ -42,7 +42,7 @@ BOOLEAN add_to_scoreboard(score scores[MAX_SCORES], struct player * winner)
 	for (i = 0; i < MAX_SCORES; i++) {
 
 		/* Compare the last winning score against the current array element */
-		if (winner->score > scores[i]->score) {
+		if (winner->score > scores[i].score) {
 
 			/* Move each score lower than the last winner's down one
 			place in the order */
@@ -82,15 +82,15 @@ void display_scores(score scores[MAX_SCORES])
 
 	for (i = 0; i < MAX_SCORES; i++) {
 
-		if (scores[i]->score == 0) continue;
+		if (scores[i].score == 0) continue;
 
-		printf("%s", scores[i]->name);
+		printf("%s", scores[i].name);
 
-		for (j = 0; j < (NAMELEN - strlen(scores[i]->name)); j++) {
+		for (j = 0; j < (NAMELEN - strlen(scores[i].name)); j++) {
 				printf(" ");
 		}
 
-		printf("| %d", scores[i]->score);
+		printf("| %d", scores[i].score);
 
 	}
 

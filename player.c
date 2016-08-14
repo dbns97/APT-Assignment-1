@@ -22,9 +22,9 @@
 BOOLEAN init_first_player(struct player* first, enum cell * token) {
 
 	/* Initialise to known safe values */
-	first->name = "player1";
+	strcpy(first->name, "player1");
 	first->token = RED;
-	first->name = 0;
+	first->score = 0;
 
 	/* Assign name */
 	printf("Please enter the first player's name: ");
@@ -32,7 +32,6 @@ BOOLEAN init_first_player(struct player* first, enum cell * token) {
 	first->name[strlen(first->name)-1] = '\0';
 
 	/* Assign token */
-	srand(time(0));
 	if (rand() % NUM_COLORS == 0) {
 		*token = RED;
 	} else {
@@ -48,9 +47,9 @@ BOOLEAN init_first_player(struct player* first, enum cell * token) {
 BOOLEAN init_second_player(struct player * second, enum cell token) {
 
 	/* Initialise to known safe values */
-	second->name = "player2";
+	strcpy(second->name, "player2");
 	second->token = BLUE;
-	second->name = 0;
+	second->score = 0;
 
 	/* Assign name */
 	printf("Please enter the second player's name: ");

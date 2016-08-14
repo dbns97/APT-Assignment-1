@@ -1,11 +1,11 @@
 /***********************************************************************
  * COSC1076 - Advanced Programming Techniques
- * Semester 2 2016 Assignment #1 
- * Full Name        : EDIT HERE
- * Student Number   : EDIT HERE
- * Course Code      : EDIT HERE
- * Program Code     : EDIT HERE
- * Start up code provided by Paul Miller 
+ * Semester 2 2016 Assignment #1
+ * Full Name        : Drew Nuttall-Smith
+ * Student Number   : s3545039
+ * Course Code      : COSC1076
+ * Program Code     : BP096
+ * Start up code provided by Paul Miller
  **********************************************************************/
 #include "shared.h"
 #ifndef GAMEBOARD_H
@@ -13,7 +13,7 @@
 
 /* forwards declaration of a struct player. This means that the compiler knows
  * that such a datastructure will be available but it does not what it contains
- * and so we can have pointers to a player but we don't know how big it is or 
+ * and so we can have pointers to a player but we don't know how big it is or
  * what it contains.
  */
 struct player;
@@ -29,7 +29,7 @@ enum direction
 /* how tall is the game board - 8 places high */
 #define BOARD_HEIGHT 8
 /* how wide is the game board ? */
-#define BOARD_WIDTH BOARD_HEIGHT 
+#define BOARD_WIDTH BOARD_HEIGHT
 
 /* type definition of a game_board. It is just a 2-dimensional array */
 typedef enum cell game_board[BOARD_HEIGHT][BOARD_WIDTH];

@@ -16,5 +16,9 @@
 #ifndef REVERSI_H
 #define REVERSI_H
 
+/* Main menu selections */
+#define PLAY_GAME 1
+#define DISPLAY_SCORES 2
+#define EXIT_GAME 3
 
 #endif

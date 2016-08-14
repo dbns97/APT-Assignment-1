@@ -20,37 +20,44 @@ int main(void)
 	struct player human, computer, *winner = NULL;
 
 	/* initialise the scoreboard */
-	scoreboard_init(scrboard);
+	init_scoreboard(scrboard);
 
-	/* in a loop: display the main menu */
-	printMenu();
+	/* Present the main menu in a loop until program ends */
+	while (1) {
 
-	/* get the user's selection from the main menu */
-	switch(getSelection()) {
+		/* Display the main menu */
+		printMenu();
 
-		case 1:
+		/* Get the user's selection and perform task */
+		switch(getSelection()) {
 
-			winner = play_game(&human, &computer);
+			case PLAY_GAME:
 
-			break;
+				winner = play_game(&human, &computer);
 
-		case 2:
+				/* add winner to the scoreboard */
+				add_to_scoreboard(scrboard, winner);
 
-			break;
+				break;
 
-		case 3:
+			case DISPLAY_SCORES:
 
-			exit(EXIT_SUCCESS);
+				/* Display high scores */
+				display_scores(scrboard);
 
-			break;
+				break;
+
+			case EXIT_GAME:
+
+				/* Exit the program */
+				exit(EXIT_SUCCESS);
+
+				break;
+
+		}
 
 	}
 
-	/* perform the requested task */
-			/* play a game and add the winner to the scoreboard */
-
-			/* display scores */
-			/* quit the program */
 	return EXIT_SUCCESS;
 }
 
