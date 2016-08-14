@@ -32,7 +32,7 @@ void init_game_board(game_board board) {
 
 			if ((i == 3 || i == 4) && (j == i)) {
 				board[i][j] = RED; /* Set two of the four centre squares to RED */
-			} else if ((i == 4 && j == 5) || (i == 5 && j == 4)) {
+			} else if ((i == 3 && j == 4) || (i == 4 && j == 3)) {
 				board[i][j] = BLUE; /* Set two of the four centre squares to BLUE */
 			} else {
 				board[i][j] = BLANK; /* Set all other squares to BLANK */
@@ -50,6 +50,53 @@ void init_game_board(game_board board) {
  * assignment specification.
  **/
 void display_board(game_board board, struct player * first, struct player * second) {
+
+	/* Variables */
+	int i;
+	int j;
+
+	printf("================================================================================\n");
+	printf("Player One's Details\n");
+	printf("--------------------\n");
+	printf("Name: %s ", first->name);
+	printf("Score: %d ", first->score);
+	printf("Token Color: %s0%s \n", (first->token == RED) ? COLOR_RED : COLOR_BLUE, COLOR_RESET);
+	printf("--------------------------------------------------------------------------------\n");
+	printf("Player Two's Details\n");
+	printf("--------------------\n");
+	printf("Name: %s ", second->name);
+	printf("Score: %d ", second->score);
+	printf("Token Color: %s0%s \n", (second->token == RED) ? COLOR_RED : COLOR_BLUE, COLOR_RESET);
+	printf("--------------------------------------------------------------------------------\n");
+
+	/* Print top line with column numbers */
+	printf("   ");
+	for (i = 1; i <= BOARD_WIDTH; i++) {
+		printf(" %d  ", i);
+	}
+	printf("\n");
+
+	printf("====================================\n");
+
+	/* Print rows */
+	for (i = 0; i < BOARD_HEIGHT; i++) {
+
+		printf(" %d |", (i + 1));
+
+		for (j = 0; j < BOARD_WIDTH; j++) {
+
+			if (board[i][j] == RED) printf(" %s0%s |", COLOR_RED, COLOR_RESET);
+			if (board[i][j] == BLUE) printf(" %s0%s |", COLOR_BLUE, COLOR_RESET);
+			if (board[i][j] == BLANK) printf("   |");
+
+		}
+
+		printf("\n");
+
+		printf("------------------------------------\n");
+
+	}
+
 
 }
 

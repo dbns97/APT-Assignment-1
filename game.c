@@ -46,12 +46,6 @@ struct player * play_game(struct player * first, struct player * second) {
 	init_first_player(first, &token);
 	init_second_player(second, token);
 
-	/* PRINT VALUES FOR TESTING PURPOSES */
-	printf("first player name: %s\n", first->name);
-	printf("first player token: %d\n", first->token);
-	printf("second player name: %s\n", second->name);
-	printf("second player token: %d\n", second->token);
-
 	/* Set the current and other player pointers */
 	if (first->token == RED) {
 		current = first;
@@ -65,12 +59,12 @@ struct player * play_game(struct player * first, struct player * second) {
 	init_game_board(board);
 
 	/* Game loop */
-	while(1) {
+	/*while(1) {*/
 
 		/* Display the game board */
 		display_board(board, first, second);
 
-	}
+	/*}*/
 
 	return winner;
 
@@ -104,7 +98,7 @@ unsigned game_score(game_board board, enum cell player_token) {
 void swap_players(struct player ** first, struct player ** second) {
 
 	/* Variables */
-	player* swp;
+	struct player* swp;
 
 	/* Swap the two player pointers */
 	swp = *first;
