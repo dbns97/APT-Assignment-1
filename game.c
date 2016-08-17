@@ -69,7 +69,9 @@ struct player * play_game(struct player * first, struct player * second) {
 		if (make_move(current, board) == FALSE) {
 			break;
 		} else {
-			swap_players(current, other);
+			swap_players(&current, &other);
+			first->score = game_score(board, first->token);
+			second->score = game_score(board, second->token);
 		}
 
 	}
@@ -108,7 +110,7 @@ BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_to
 			dirCaptureCount++;
 			next.x += translations[dir][0];
 			next.y += translations[dir][1];
-		}	
+		}
 
 		if (board[next.x][next.y] == player_token) {
 
@@ -128,7 +130,7 @@ BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_to
 	}
 
 	if (captured_pieces == 0) {
-	   return FALSE;
+		return FALSE;
 	} else {
 		board[x][y] = player_token;
 		return TRUE;
@@ -141,6 +143,18 @@ BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_to
  * specified on the game_board.
  **/
 unsigned game_score(game_board board, enum cell player_token) {
+
+	int i;
+	int j;
+	int score = 0;
+
+	for (i = 0; i < BOARD_HEIGHT; i++) {
+		for (j = 0; j < BOARD_WIDTH; j++) {
+			if (board[i][j] == player_token) score++;
+		}
+	}
+
+	return score;
 
 }
 
