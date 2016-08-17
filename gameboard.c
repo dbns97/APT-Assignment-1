@@ -97,6 +97,7 @@ void display_board(game_board board, struct player * first, struct player * seco
 
 	}
 
+	printf("====================================\n");
 
 }
 

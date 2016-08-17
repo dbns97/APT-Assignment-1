@@ -28,7 +28,7 @@ BOOLEAN init_first_player(struct player* first, enum cell * token) {
 
 	/* Assign name */
 	printf("Please enter the first player's name: ");
-	fgets(first->name, (NAMELEN + 2), stdin);
+	fgets(first->name, (NAMELEN + EXTRACHARS), stdin);
 	first->name[strlen(first->name)-1] = '\0';
 
 	/* Assign token */
@@ -53,7 +53,7 @@ BOOLEAN init_second_player(struct player * second, enum cell token) {
 
 	/* Assign name */
 	printf("Please enter the second player's name: ");
-	fgets(second->name, (NAMELEN + 2), stdin);
+	fgets(second->name, (NAMELEN + EXTRACHARS), stdin);
 	second->name[strlen(second->name)-1] = '\0';
 
 	/* Assign token */
@@ -72,5 +72,33 @@ BOOLEAN init_second_player(struct player * second, enum cell token) {
  * calls the apply_move function to do the actual work of capturing pieces.
  **/
 BOOLEAN make_move(struct player * human, game_board board) {
+
+	/* Variables */
+	char buffer[5];
+	int bufferLength = 5;
+	char* line;
+	char* ptr;
+	char delim[2] = ",";
+	char* token;
+	unsigned x;
+	unsigned y;
+
+	printf("Please enter x and y coordinates separated by a comma for the piece you wish to place: ");
+
+	/* Get user input from stdin */
+	line = fgets(buffer, bufferLength, stdin);
+
+	/* Check if user quit game */
+	if (line == NULL || *buffer == NEWLINE) return FALSE;
+
+	/* Get x coordinate */
+	token = strtok(buffer, delim);
+	x = strtol(token, &ptr, 10) - 1;
+
+	/* Get y coordinate */
+	token = strtok(NULL, delim);
+	y = strtol(token, &ptr, 10) - 1;
+
+	return apply_move(board, y, x, human->token);
 
 }

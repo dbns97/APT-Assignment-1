@@ -23,13 +23,13 @@ int main(void)
 	init_scoreboard(scrboard);
 
 	/* Present the main menu in a loop until program ends */
-	while (1) {
+	while (TRUE) {
 
 		/* Display the main menu */
-		printMenu();
+		print_menu();
 
 		/* Get the user's selection and perform task */
-		switch(getSelection()) {
+		switch(get_selection()) {
 
 			case PLAY_GAME:
 
@@ -64,7 +64,7 @@ int main(void)
 /**
  * Print the main menu
  */
-void printMenu() {
+void print_menu() {
 
 	printf("Welcome to Reversi!\n");
 	printf("===================\n");
@@ -81,7 +81,7 @@ void printMenu() {
  *
  * @return: the selection as an integer
 */
-int getSelection() {
+int get_selection() {
 
 	/* Variables */
 	char buffer[3];

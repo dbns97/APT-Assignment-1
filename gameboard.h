@@ -24,6 +24,12 @@ enum direction
     NORTH, SOUTH, EAST, WEST, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST
 };
 
+struct coordinate
+{
+	unsigned x;
+	unsigned y;
+};
+
 /* how much space is required to display a column on the game board ? */
 #define COLUMN_WIDTH 4
 /* how tall is the game board - 8 places high */

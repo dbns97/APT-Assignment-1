@@ -59,12 +59,20 @@ struct player * play_game(struct player * first, struct player * second) {
 	init_game_board(board);
 
 	/* Game loop */
-	/*while(1) {*/
+	while(TRUE) {
 
 		/* Display the game board */
 		display_board(board, first, second);
 
-	/*}*/
+		printf("It is %s's turn.\n", current->name);
+
+		if (make_move(current, board) == FALSE) {
+			break;
+		} else {
+			swap_players(current, other);
+		}
+
+	}
 
 	return winner;
 
@@ -80,6 +88,51 @@ BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_to
 
 	enum direction dir;
 	unsigned captured_pieces = 0;
+	int translations[8][2] = {{0,1}, {0,-1}, {1,0}, {-1,0}, {1,1}, {-1,1}, {1,-1}, {-1,-1}};
+	enum cell opponent_token = (player_token == RED) ? BLUE : RED;
+	struct coordinate next;
+	int dirCaptureCount;
+
+	/* Check if the chosen square is empty */
+	if (board[x][y] != BLANK) return FALSE;
+
+	/* Check if any pieces can be taken in any of the cardinal directions */
+	for (dir = NORTH; dir <= SOUTH_WEST; dir++) {
+
+		dirCaptureCount = 0;
+
+		next.x = x + translations[dir][0];
+		next.y = y + translations[dir][1];
+
+		while (board[next.x][next.y] == opponent_token) {
+			dirCaptureCount++;
+			next.x += translations[dir][0];
+			next.y += translations[dir][1];
+		}	
+
+		if (board[next.x][next.y] == player_token) {
+
+			captured_pieces += dirCaptureCount;
+
+			next.x -= translations[dir][0];
+			next.y -= translations[dir][1];
+
+			while (next.x != x || next.y != y) {
+				board[next.x][next.y] = player_token;
+				next.x -= translations[dir][0];
+				next.y -= translations[dir][1];
+			}
+
+		}
+
+	}
+
+	if (captured_pieces == 0) {
+	   return FALSE;
+	} else {
+		board[x][y] = player_token;
+		return TRUE;
+	}
 
 }
 
@@ -106,3 +159,4 @@ void swap_players(struct player ** first, struct player ** second) {
 	*second = swp;
 
 }
+
