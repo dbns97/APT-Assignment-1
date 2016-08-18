@@ -36,7 +36,7 @@ int main(void)
 				winner = play_game(&human, &computer);
 
 				/* add winner to the scoreboard */
-				add_to_scoreboard(scrboard, winner);
+				if (winner != NULL) add_to_scoreboard(scrboard, winner);
 
 				break;
 

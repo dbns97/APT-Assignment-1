@@ -86,11 +86,11 @@ void display_scores(score scores[MAX_SCORES])
 
 		printf("%s", scores[i].name);
 
-		for (j = 0; j < (NAMELEN - strlen(scores[i].name)); j++) {
+		for (j = 0; j <= (NAMELEN - strlen(scores[i].name)); j++) {
 				printf(" ");
 		}
 
-		printf("| %d", scores[i].score);
+		printf("| %d\n", scores[i].score);
 
 	}
 

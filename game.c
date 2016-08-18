@@ -67,6 +67,13 @@ struct player * play_game(struct player * first, struct player * second) {
 		printf("It is %s's turn.\n", current->name);
 
 		if (make_move(current, board) == FALSE) {
+			if (first->score > second->score) {
+				winner = first;
+			} else if (second->score > first->score) {
+				winner = second;
+			} else {
+				winner = NULL;
+			}
 			break;
 		} else {
 			swap_players(&current, &other);
@@ -105,14 +112,19 @@ BOOLEAN apply_move(game_board board, unsigned y, unsigned x, enum cell player_to
 
 		next.x = x + translations[dir][0];
 		next.y = y + translations[dir][1];
+		if (next.x >= BOARD_WIDTH || next.y >= BOARD_HEIGHT) continue;
 
 		while (board[next.x][next.y] == opponent_token) {
 			dirCaptureCount++;
 			next.x += translations[dir][0];
 			next.y += translations[dir][1];
+
+			if (next.x >= BOARD_WIDTH || next.y >= BOARD_HEIGHT) break;
 		}
 
-		if (board[next.x][next.y] == player_token) {
+		if (next.x >= BOARD_WIDTH || next.y >= BOARD_HEIGHT) continue;
+
+		if (dirCaptureCount > 0 && board[next.x][next.y] == player_token) {
 
 			captured_pieces += dirCaptureCount;
 
