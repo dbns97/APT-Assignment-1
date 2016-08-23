@@ -21,4 +21,7 @@
 #define DISPLAY_SCORES 2
 #define EXIT_GAME 3
 
+void print_menu();
+int get_selection();
+
 #endif

@@ -14,6 +14,7 @@
 #include <assert.h>
 #include <math.h>
 #include <time.h>
+#include <ctype.h>
 
 #ifndef SHARED_H
 #define SHARED_H
@@ -34,6 +35,9 @@ enum cell
 {
         BLANK, RED, BLUE
 };
+
+#define MAX_CHAR 56
+#define MIN_CHAR 49
 
 /* color codes required to display the tokens on the board */
 #define COLOR_RED     "\33[31m"

@@ -22,4 +22,7 @@
 #define NEWLINE '\n'
 
 void read_rest_of_line(void);
+
+BOOLEAN checkBuffer(char buffer[], int bufferLength);
+
 #endif /* ifndef UTILITY_H */

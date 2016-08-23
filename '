@@ -42,6 +42,7 @@ BOOLEAN init_first_player(struct player* first, enum cell * token) {
 
 	/* Assign name*/
 	strcpy(first->name, buffer);
+	first->name[strlen(first->name)-1] = '\0';
 
 	/* Assign token */
 	if (rand() % NUM_COLORS == 0) {
@@ -72,12 +73,13 @@ BOOLEAN init_second_player(struct player * second, enum cell token) {
 
 	/* Check input */
 	if (checkBuffer(buffer, bufferLength) == FALSE) {
-		fprintf(stderr, "Error: Invalid input\n");
+		fprintf(stderr, "Invalid input\n");
 		return init_second_player(second, token);
 	}
 
 	/* Assign name*/
 	strcpy(second->name, buffer);
+	second->name[strlen(second->name)-1] = '\0';
 
 	/* Assign token */
 	second->token = (token == 1) ? 2 : 1;
@@ -121,7 +123,7 @@ BOOLEAN make_move(struct player * human, game_board board) {
 
 	/* Get x coordinate */
 	token = strtok(buffer, delim);
-	if (!(strlen(token) == 1) || (int)token[0] > MAX_CHAR || (int)token[0] < MIN_CHAR) {
+	if (strlen(token) > 1 || token[0] > MAX_CHAR || token[0] < MIN_CHAR) {
 		fprintf(stderr, "Error: the move you attempted was not valid.\n");
 		return make_move(human, board);
 	}
@@ -129,7 +131,7 @@ BOOLEAN make_move(struct player * human, game_board board) {
 
 	/* Get y coordinate */
 	token = strtok(NULL, delim);
-	if (!(strlen(token) == 1) || (int)token[0] > MAX_CHAR || (int)token[0] < MIN_CHAR) {
+	if (strlen(token) > 1 || token[0] > MAX_CHAR || token[0] < MIN_CHAR) {
 		fprintf(stderr, "Error: the move you attempted was not valid.\n");
 		return make_move(human, board);
 	}

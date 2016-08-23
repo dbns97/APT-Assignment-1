@@ -32,27 +32,23 @@ int main(void)
 		switch(get_selection()) {
 
 			case PLAY_GAME:
-
 				winner = play_game(&human, &computer);
-
 				/* add winner to the scoreboard */
 				if (winner != NULL) add_to_scoreboard(scrboard, winner);
-
 				break;
 
 			case DISPLAY_SCORES:
-
 				/* Display high scores */
 				display_scores(scrboard);
-
 				break;
 
 			case EXIT_GAME:
-
 				/* Exit the program */
 				exit(EXIT_SUCCESS);
-
 				break;
+
+			default:
+				fprintf(stderr, "Error: Invalid selection!\n");
 
 		}
 
@@ -84,13 +80,15 @@ void print_menu() {
 int get_selection() {
 
 	/* Variables */
-	char buffer[3];
-	int bufferLength = 3;
-	char *ptr;
+	char buffer[1 + EXTRACHARS];
+	int bufferLength = 1 + EXTRACHARS;
+	char *ptr = NULL;
 	int selection;
 
 	/* Get user input from stdin */
 	fgets(buffer, bufferLength, stdin);
+
+	if (checkBuffer(buffer, bufferLength) == FALSE) return FALSE;
 
 	/* Read value from buffer as number */
 	selection = strtol(buffer, &ptr, 10);

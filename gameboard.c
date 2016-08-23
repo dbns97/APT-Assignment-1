@@ -31,11 +31,11 @@ void init_game_board(game_board board) {
 		for (j = 0; j < BOARD_WIDTH; j++) {
 
 			if ((i == 3 || i == 4) && (j == i)) {
-				board[i][j] = RED; /* Set two of the four centre squares to RED */
+				board[j][i] = RED; /* Set two of the four centre squares to RED */
 			} else if ((i == 3 && j == 4) || (i == 4 && j == 3)) {
-				board[i][j] = BLUE; /* Set two of the four centre squares to BLUE */
+				board[j][i] = BLUE; /* Set two of the four centre squares to BLUE */
 			} else {
-				board[i][j] = BLANK; /* Set all other squares to BLANK */
+				board[j][i] = BLANK; /* Set all other squares to BLANK */
 			}
 
 		}
@@ -85,9 +85,9 @@ void display_board(game_board board, struct player * first, struct player * seco
 
 		for (j = 0; j < BOARD_WIDTH; j++) {
 
-			if (board[i][j] == RED) printf(" %s0%s |", COLOR_RED, COLOR_RESET);
-			if (board[i][j] == BLUE) printf(" %s0%s |", COLOR_BLUE, COLOR_RESET);
-			if (board[i][j] == BLANK) printf("   |");
+			if (board[j][i] == RED) printf(" %s0%s |", COLOR_RED, COLOR_RESET);
+			if (board[j][i] == BLUE) printf(" %s0%s |", COLOR_BLUE, COLOR_RESET);
+			if (board[j][i] == BLANK) printf("   |");
 
 		}
 
