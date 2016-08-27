@@ -42,6 +42,9 @@ struct player * play_game(struct player * first, struct player * second) {
 	/* Seed random number generator */
 	srand(time(0));
 
+	/* Initialise the game board */
+	init_game_board(board);
+
 	/* Initialise both players */
 	init_first_player(first, &token);
 	init_second_player(second, token);
@@ -55,9 +58,6 @@ struct player * play_game(struct player * first, struct player * second) {
 		other = first;
 	}
 
-	/* Initialise the game board */
-	init_game_board(board);
-
 	/* Game loop */
 	while(TRUE) {
 
@@ -67,18 +67,17 @@ struct player * play_game(struct player * first, struct player * second) {
 		printf("It is %s's turn.\n", current->name);
 
 		if (make_move(current, board) == FALSE) {
-			if (first->score > second->score) {
-				winner = first;
-			} else if (second->score > first->score) {
-				winner = second;
-			} else {
-				winner = NULL;
-			}
+			endGame(&first, &second, &winner);
 			break;
 		} else {
-			swap_players(&current, &other);
 			first->score = game_score(board, first->token);
 			second->score = game_score(board, second->token);
+			if (first->score + second->score == NUM_SQUARES) {
+				endGame(&first, &second, &winner);
+				break;
+			} else {
+				swap_players(&current, &other);
+			}
 		}
 
 	}
@@ -186,3 +185,18 @@ void swap_players(struct player ** first, struct player ** second) {
 
 }
 
+void endGame(struct player ** first, struct player ** second, struct player ** winner) {
+
+	if ((*first)->score > (*second)->score) {
+		*winner = *first;
+	} else if ((*second)->score > (*first)->score) {
+		*winner = *second;
+	} else {
+		*winner = NULL;
+		printf("<----- The game was a draw ----->\n\n");
+		return;
+	}
+
+	printf("<----- %s wins! ----->\n\n", (*winner)->name);
+
+}

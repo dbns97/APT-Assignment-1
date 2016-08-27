@@ -1,10 +1,10 @@
 /***********************************************************************
  * COSC1076 - Advanced Programming Techniques
  * Semester 2 2016 Assignment #1
- * Full Name      : Drew Nuttall-Smith
- * Student Number : s3545039
- * Course Code    : COSC1076
- * Program Code   : BP096
+ * Full Name        : Drew Nuttall-Smith
+ * Student Number   : s3545039
+ * Course Code      : COSC1076
+ * Program Code     : BP096
  * Start up code provided by Paul Miller
  **********************************************************************/
 
@@ -21,6 +21,7 @@ void init_scoreboard(score scores[MAX_SCORES]) {
 
 	/* Set each score in scores to 0 */
 	for (i = 0; i < MAX_SCORES; i++) {
+		strcpy(scores[i].name, "");
 		scores[i].score = 0;
 	}
 

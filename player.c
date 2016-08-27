@@ -135,7 +135,7 @@ BOOLEAN make_move(struct player * human, game_board board) {
 	}
 	y = strtol(token, &ptr, 10) - 1;
 
-	if (apply_move(board, y, x, human->token) == FALSE || x >= BOARD_WIDTH || y >= BOARD_HEIGHT) {
+	if (apply_move(board, y, x, human->token) == FALSE) {
 		fprintf(stderr, "Error: the move you attempted was not valid.\n");
 		return make_move(human, board);
 	} else {

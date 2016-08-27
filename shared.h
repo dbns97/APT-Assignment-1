@@ -29,6 +29,7 @@ typedef enum
  * generation
  */
 #define NUM_COLORS 2
+#define NUM_SQUARES 64
 
 /* what values could be contained in a cell on the board? */
 enum cell

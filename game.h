@@ -21,5 +21,6 @@ BOOLEAN apply_move(game_board board, unsigned y, unsigned x,
                    enum cell player_token);
 unsigned game_score(game_board board, enum cell player_token);
 void swap_players(struct player ** first, struct player ** second);
+void endGame(struct player ** first, struct player ** second, struct player ** winner);
 
 #endif /* ifndef GAME_H */
